@@ -1,0 +1,8 @@
+[submodule "eigen3"]
+	path = eigen3
+	url = https://github.com/eigenteam/eigen-git-mirror
+	branch = master
+[submodule "pybind11"]
+	path = pybind11
+	url = https://github.com/pybind/pybind11
+	branch = master
