@@ -5,6 +5,7 @@
 #include "utility.h"
 #include<iostream>
 #include<vector>
+#include <eigen3/Eigen/Core>
 using namespace std;
 using namespace Utility;
 
@@ -224,6 +225,7 @@ public:
 
     bool savePLY2File(string filename);
 public:
+    bool readVF(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F);
     bool readObjfile(string filename);
     bool readOfffile(string filename);
     bool saveObjFile(string filename);

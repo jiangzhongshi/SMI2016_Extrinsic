@@ -74,6 +74,7 @@ public:
 
 public:
 
+    int Initialize(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F, bool isEigenInit, bool isGaussIter, Eigen::MatrixXd& out_field, Eigen::MatrixXd& out_normal);
 
     int Initialize(string inputfile, string outputfile = string(), bool isEigenInit = true, bool isGaussIter = true);
     bool ReadFile(string filename);

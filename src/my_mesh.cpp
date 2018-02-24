@@ -1352,6 +1352,21 @@ void Mesh::SurfaceLaplacianFairing(double lambda,int iter,vector<bool>* staticv)
 }
 
 
+bool Mesh::readVF(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F) {
+    reset();
+    vertices.clear();
+    faces2vertices.clear();
+    for (int v=0; v<V.rows(); v++)
+        for (int i=0; i<3; i++)
+            vertices.push_back(V(v,i));
+    for (int v=0; v<F.rows(); v++)
+        for (int i=0; i<3; i++)
+            faces2vertices.push_back(F(v,i));
+    setparameters();
+    cout<<"reading finish. Total vertices: "<<n_vertices<<endl;
+    isbuildneighbortable=false;
+    return true;
+}
 
 bool Mesh::readObjfile(string filename){
 

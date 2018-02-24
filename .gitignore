@@ -5,3 +5,4 @@ extrinsic
 *.so
 *.egg-info
 .vscode
+*.DS_Store
