@@ -2,3 +2,6 @@ build/
 *.o
 output/
 extrinsic
+*.so
+*.egg-info
+.vscode
