@@ -45,14 +45,17 @@ if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU"
   endif()
 endif()
 
+option(CMDLN "command line program build, Or PyBind link" OFF)
+
 # Real Code starts here...
 file(GLOB SRC_FILE src/*.cpp)
 
-# add_executable(${PROJECT_NAME}_bin ${SRC_FILE})
-# target_include_directories(${PROJECT_NAME}_bin PUBLIC
-# ${CMAKE_CURRENT_SOURCE_DIR}/include 
-# ${CMAKE_CURRENT_SOURCE_DIR}/)
-
+if(CMDLN)
+add_executable(${PROJECT_NAME}_bin ${SRC_FILE})
+target_include_directories(${PROJECT_NAME}_bin PUBLIC
+${CMAKE_CURRENT_SOURCE_DIR}/include 
+${CMAKE_CURRENT_SOURCE_DIR}/)
+else()
 add_subdirectory(pybind11)
 add_library(extrinsic MODULE src_py/pybinding.cpp)
 target_link_libraries(extrinsic PRIVATE pybind11::module)
@@ -63,3 +66,4 @@ ${CMAKE_CURRENT_SOURCE_DIR}/eigen3
 ${PYTHON_INCLUDE_DIR})
 set_target_properties(extrinsic PROPERTIES PREFIX "${PYTHON_MODULE_PREFIX}"
                                          SUFFIX "${PYTHON_MODULE_EXTENSION}")
+endif()
