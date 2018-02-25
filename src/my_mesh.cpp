@@ -792,8 +792,10 @@ void Mesh::ComputeFaceNormal(bool isComputeVerticesNormal, vector<bool> *p_isinv
     for (uint i = 0; i < n_vertices; i ++){
         auto p_vn = &(vertices_normal[i * 3]);
         for (auto p_vf = vf_begin(i); p_vf != vf_end(i); ++p_vf){
+            auto p_fv = fv_begin(*p_vf);
+            double area =  TriangleArea(p_fv[0],p_fv[1],p_fv[2]);
             auto p_fn = get_face_normal(*p_vf);
-            for (uint j = 0; j < 3; ++j)p_vn[j] += p_fn[j];
+            for (uint j = 0; j < 3; ++j)p_vn[j] += p_fn[j] * area;
         }
         normalize(p_vn);
         if(p_vn[0]!=p_vn[0])cout<<"Nan Vertices normal"<<endl;
